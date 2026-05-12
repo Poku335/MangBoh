@@ -1,0 +1,255 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+enum UserRole {
+  USER
+  ADMIN
+}
+
+enum LogType {
+  AUTH
+  ACTIVITY
+  ERROR
+}
+
+enum MangaType {
+  MANGA
+  MANHWA
+  MANHUA
+}
+
+model User {
+  id             Int              @id @default(autoincrement())
+  email          String           @unique
+  emailVerified  DateTime?
+  password       String?
+  name           String
+  image          String?
+  role           UserRole         @default(USER)
+  coins          Int              @default(0)
+  createdAt      DateTime         @default(now())
+  purchases      Purchase[]
+  bookmarks      Bookmark[]
+  readingHistory ReadingHistory[]
+  sessions       Session[]
+  accounts       Account[]
+  mangas         Manga[]
+  comments       Comment[]
+  ratings        Rating[]
+  topupRequests  TopupRequest[]
+  logs           UserLog[]
+}
+
+model Account {
+  id                Int     @id @default(autoincrement())
+  userId            Int
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String?
+  access_token      String?
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String?
+  session_state     String?
+  user              User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+}
+
+model Session {
+  id        String   @id
+  userId    Int
+  expiresAt DateTime
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model Manga {
+  id          Int        @id @default(autoincrement())
+  title       String
+  altTitle    String?
+  description String
+  coverImage  String?
+  genre       String
+  subGenre    String?
+  contentType String     @default("comics")
+  type        MangaType  @default(MANHWA)
+  rating      String     @default("all")
+  status      String     @default("Ongoing")
+  viewCount   Int        @default(0)
+  createdAt   DateTime   @default(now())
+  updatedAt   DateTime   @updatedAt
+  authorId    Int?
+  author      User?      @relation(fields: [authorId], references: [id], onDelete: SetNull)
+  chapters    Chapter[]
+  bookmarks   Bookmark[]
+  comments    Comment[]
+  ratings     Rating[]
+
+  @@index([viewCount])
+}
+
+model Chapter {
+  id            Int      @id @default(autoincrement())
+  mangaId       Int
+  chapterNumber Float
+  title         String?
+  isPaid        Boolean  @default(false)
+  price         Int      @default(0)
+  isHidden      Boolean  @default(false)
+  createdAt     DateTime @default(now())
+  manga         Manga    @relation(fields: [mangaId], references: [id], onDelete: Cascade)
+  pages          Page[]
+  purchases      Purchase[]
+  readingHistory ReadingHistory[]
+
+  @@unique([mangaId, chapterNumber])
+}
+
+model Page {
+  id         Int     @id @default(autoincrement())
+  chapterId  Int
+  pageNumber Int
+  imagePath  String
+  chapter    Chapter @relation(fields: [chapterId], references: [id], onDelete: Cascade)
+
+  @@unique([chapterId, pageNumber])
+}
+
+model ReadingHistory {
+  id         Int      @id @default(autoincrement())
+  userId     Int
+  chapterId  Int
+  lastReadAt DateTime @updatedAt
+  user       User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  chapter    Chapter  @relation(fields: [chapterId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, chapterId])
+  @@index([userId])
+  @@index([lastReadAt])
+}
+
+model Bookmark {
+  id        Int      @id @default(autoincrement())
+  userId    Int
+  mangaId   Int
+  createdAt DateTime @default(now())
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  manga     Manga    @relation(fields: [mangaId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, mangaId])
+  @@index([userId])
+}
+
+model Purchase {
+  id         Int      @id @default(autoincrement())
+  userId     Int
+  chapterId  Int
+  paidAmount Int
+  createdAt  DateTime @default(now())
+  user       User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  chapter    Chapter  @relation(fields: [chapterId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, chapterId])
+  @@index([userId])
+}
+
+model Comment {
+  id         Int       @id @default(autoincrement())
+  userId     Int?
+  mangaId    Int
+  content    String
+  guestName  String?
+  guestEmail String?
+  isGuest    Boolean   @default(false)
+  parentId   Int?
+  createdAt  DateTime  @default(now())
+  user       User?     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  manga      Manga     @relation(fields: [mangaId], references: [id], onDelete: Cascade)
+  parent     Comment?  @relation("CommentReplies", fields: [parentId], references: [id], onDelete: Cascade)
+  replies    Comment[] @relation("CommentReplies")
+
+  @@index([mangaId])
+  @@index([userId])
+  @@index([parentId])
+  @@index([mangaId, createdAt])
+}
+
+model Rating {
+  id        Int      @id @default(autoincrement())
+  userId    Int
+  mangaId   Int
+  score     Int
+  createdAt DateTime @default(now())
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  manga     Manga    @relation(fields: [mangaId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, mangaId])
+}
+
+model SiteReport {
+  id             Int      @id @default(autoincrement())
+  createdAt      DateTime @default(now())
+  generatedBy    String   @default("AI Agent System")
+  summary        Json
+  frontendIssues Json
+  backendIssues  Json
+  status         String   @default("active")
+}
+
+model SiteConfig {
+  key   String @id
+  value String
+}
+
+model PasswordResetOtp {
+  id         Int      @id @default(autoincrement())
+  email      String
+  otp        String
+  resetToken String?  @unique
+  expiresAt  DateTime
+  used       Boolean  @default(false)
+  createdAt  DateTime @default(now())
+
+  @@index([email])
+}
+
+model UserLog {
+  id        Int      @id @default(autoincrement())
+  userId    Int?
+  type      LogType
+  action    String
+  meta      Json?
+  ip        String?
+  userAgent String?
+  createdAt DateTime @default(now())
+  user      User?    @relation(fields: [userId], references: [id], onDelete: SetNull)
+
+  @@index([userId])
+  @@index([type])
+  @@index([createdAt])
+}
+
+model TopupRequest {
+  id          Int       @id @default(autoincrement())
+  userId      Int
+  amount      Int
+  status      String    @default("pending")
+  slipPath    String?
+  adminNote   String?
+  createdAt   DateTime  @default(now())
+  approvedAt  DateTime?
+  approvedBy  Int?
+  user        User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@index([status])
+}

@@ -1,0 +1,127 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@keyframes swiper-progress {
+  from { width: 100%; }
+  to   { width: 0%; }
+}
+
+:root {
+  --bg: #313338;
+  --surface: #393b42;
+  --card: #40424a;
+  --border: #4d4f58;
+  --accent: #5E6AD2;
+  --accent-hover: #4d57ac;
+  /* overridden at runtime by layout.tsx via SiteConfig */
+  --text: #dadada;
+  --muted: #8793a4;
+  --gold: #f5a623;
+  --reader-bg: #171c22;
+  --reader-panel: #1e252d;
+  --reader-panel-soft: #20272f;
+  --reader-action: #8b5cf6;
+}
+
+body {
+  background-color: var(--bg);
+  color: var(--text);
+  font-family: var(--font-poppins), "Noto Sans Thai", "Segoe UI", Roboto, sans-serif;
+  min-height: 100vh;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--surface);
+}
+
+::-webkit-scrollbar-thumb {
+  background: #364253;
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--accent);
+}
+
+.scroll-hide::-webkit-scrollbar {
+  display: none;
+}
+
+.scroll-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+.skeleton {
+  background: linear-gradient(90deg, #1c1b25 25%, #26253200 50%, #1c1b25 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.6s infinite linear;
+  border-radius: 0.5rem;
+}
+
+.page-enter {
+  animation: none;
+}
+
+.card-hover {
+  transition: color 0.15s ease, border-color 0.15s ease, background-color 0.15s ease;
+}
+
+*:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+.reader-page img {
+  display: block;
+  width: 100%;
+  height: auto;
+  image-rendering: auto;
+}
+
+@keyframes bounce-dot {
+  0%, 80%, 100% { transform: scale(0.6); opacity: 0.4; }
+  40% { transform: scale(1); opacity: 1; }
+}
+
+.dot-1 { animation: bounce-dot 1.2s ease-in-out infinite; }
+.dot-2 { animation: bounce-dot 1.2s ease-in-out 0.2s infinite; }
+.dot-3 { animation: bounce-dot 1.2s ease-in-out 0.4s infinite; }
+
+@layer components {
+  .app-panel {
+    @apply bg-card border border-border;
+  }
+
+  .app-button {
+    @apply inline-flex items-center justify-center gap-2 rounded-lg px-4 py-2 text-sm font-semibold transition-colors disabled:opacity-50;
+  }
+
+  .app-button-primary {
+    @apply app-button bg-accent text-white hover:bg-accent-hover;
+  }
+
+  .app-button-secondary {
+    @apply app-button border border-border bg-bg text-text hover:border-accent hover:text-accent;
+  }
+
+  .app-link {
+    @apply text-muted transition-colors hover:text-accent;
+  }
+}
