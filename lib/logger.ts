@@ -1,3 +1,4 @@
+import { Prisma } from "@prisma/client";
 import { prisma } from "./prisma";
 
 type LogType = "AUTH" | "ACTIVITY" | "ERROR";
@@ -6,7 +7,7 @@ interface LogOptions {
   userId?: number | null;
   type: LogType;
   action: string;
-  meta?: Record<string, unknown>;
+  meta?: Prisma.InputJsonValue;
   ip?: string;
   userAgent?: string;
 }
