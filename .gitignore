@@ -36,6 +36,8 @@ next-env.d.ts
 
 # claude
 .claude/
+CLAUDE.md
+Dockerfile
 
 # nova wiki (moved to C:/nova — shared across projects)
 nova/
