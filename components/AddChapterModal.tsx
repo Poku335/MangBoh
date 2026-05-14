@@ -82,7 +82,7 @@ export default function AddChapterModal({
       const chJson = await chRes.json();
       if (!chRes.ok) throw new Error(chJson.error || "ไม่สามารถสร้างตอนได้");
 
-      const chapterId = chJson.id;
+      const chapterId = chJson.data?.id ?? chJson.id;
 
       for (let i = 0; i < pages.length; i++) {
         const fd = new FormData();

@@ -58,7 +58,7 @@ export default function HeroSwapper({ mangas }: { mangas: HeroManga[] }) {
   if (!manga) return null;
 
   const readHref = manga.chapters[0]
-    ? `/manga/${manga.id}/chapter/${manga.chapters[0].chapterNumber}`
+    ? `/manga/${manga.id}/chapter/${manga.chapters[0].id}`
     : `/manga/${manga.id}`;
 
   return (

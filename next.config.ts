@@ -28,7 +28,10 @@ const nextConfig: NextConfig = {
       {
         source: "/uploads/:path*",
         headers: [
-          { key: "Cache-Control", value: "public, max-age=604800, stale-while-revalidate=86400" },
+          {
+            key: "Cache-Control",
+            value: "public, max-age=604800, stale-while-revalidate=86400",
+          },
         ],
       },
       {
@@ -37,7 +40,10 @@ const nextConfig: NextConfig = {
           { key: "X-Frame-Options", value: "DENY" },
           { key: "X-Content-Type-Options", value: "nosniff" },
           { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" },
-          { key: "Permissions-Policy", value: "camera=(), microphone=(), geolocation=()" },
+          {
+            key: "Permissions-Policy",
+            value: "camera=(), microphone=(), geolocation=()",
+          },
         ],
       },
     ];
