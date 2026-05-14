@@ -61,8 +61,18 @@ interface Props {
 // Helpers
 // ---------------------------------------------------------------------------
 const THAI_MONTHS = [
-  "มกราคม","กุมภาพันธ์","มีนาคม","เมษายน","พฤษภาคม","มิถุนายน",
-  "กรกฎาคม","สิงหาคม","กันยายน","ตุลาคม","พฤศจิกายน","ธันวาคม",
+  "มกราคม",
+  "กุมภาพันธ์",
+  "มีนาคม",
+  "เมษายน",
+  "พฤษภาคม",
+  "มิถุนายน",
+  "กรกฎาคม",
+  "สิงหาคม",
+  "กันยายน",
+  "ตุลาคม",
+  "พฤศจิกายน",
+  "ธันวาคม",
 ];
 
 function formatThaiDate(iso: string): string {
@@ -116,7 +126,7 @@ export default function CommentSection({
   initialComments,
 }: Props) {
   const [comments, setComments] = useState<Comment[]>(
-    initialComments.map((c) => ({ ...c, replies: c.replies ?? [] }))
+    initialComments.map((c) => ({ ...c, replies: c.replies ?? [] })),
   );
   const [content, setContent] = useState("");
   const [submitting, setSubmitting] = useState(false);
@@ -192,8 +202,8 @@ export default function CommentSection({
         prev.map((c) =>
           c.id === parentId
             ? { ...c, replies: [...c.replies, { ...reply, replies: [] }] }
-            : c
-        )
+            : c,
+        ),
       );
       setReplyContent("");
       setReplyingTo(null);
@@ -209,8 +219,8 @@ export default function CommentSection({
           prev.map((c) =>
             c.id === parentId
               ? { ...c, replies: c.replies.filter((r) => r.id !== id) }
-              : c
-          )
+              : c,
+          ),
         );
       } else {
         setComments((prev) => prev.filter((c) => c.id !== id));
@@ -230,12 +240,28 @@ export default function CommentSection({
   return (
     <div className="mt-10 space-y-3">
       {/* Toast notification */}
-      <div className={`fixed bottom-6 left-1/2 -translate-x-1/2 z-50 transition-all duration-300 ${showToast ? "opacity-100 translate-y-0" : "opacity-0 translate-y-2 pointer-events-none"}`}>
+      <div
+        className={`fixed bottom-6 left-1/2 -translate-x-1/2 z-50 transition-all duration-300 ${showToast ? "opacity-100 translate-y-0" : "opacity-0 translate-y-2 pointer-events-none"}`}
+      >
         <div className="bg-surface border border-border rounded-xl px-5 py-3 flex items-center gap-2 shadow-lg">
-          <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5" className="text-green-400 flex-shrink-0">
-            <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+          <svg
+            width="16"
+            height="16"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            strokeWidth="2.5"
+            className="text-green-400 flex-shrink-0"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d="M5 13l4 4L19 7"
+            />
           </svg>
-          <span className="text-sm text-text font-medium">ส่งความคิดเห็นแล้ว</span>
+          <span className="text-sm text-text font-medium">
+            ส่งความคิดเห็นแล้ว
+          </span>
         </div>
       </div>
       {/* Comment input card */}
@@ -249,8 +275,10 @@ export default function CommentSection({
         <form onSubmit={handleSubmit} className="px-5 pb-5 space-y-3">
           {!isLoggedIn && (
             <div className="flex items-center gap-4 flex-wrap">
-              <div className="flex items-center gap-2">
-                <span className="text-sm text-muted font-medium whitespace-nowrap">Username:</span>
+              <div className="flex items-center">
+                <span className="text-base text-muted font-medium whitespace-nowrap">
+                  ชื่อผู้ใช้:
+                </span>
                 <input
                   type="text"
                   value={guestName}
@@ -260,12 +288,14 @@ export default function CommentSection({
                   }}
                   maxLength={50}
                   placeholder="ชื่อของคุณ"
-                  className="w-40 bg-bg border border-border rounded-lg px-3 py-1.5 text-sm text-text outline-none focus:border-white/40 transition-colors"
+                  className="w-44 bg-bg border border-border rounded-lg px-3 py-1.5 text-base text-text outline-none focus:border-white/40 transition-colors"
                 />
               </div>
-              <div className="flex items-center gap-2">
-                <span className="text-sm text-muted font-medium whitespace-nowrap">Email:</span>
-                <span className="text-sm text-muted">{guestEmail}</span>
+              <div className="flex items-center gap-1">
+                <span className="text-base text-muted font-medium whitespace-nowrap">
+                  Email:
+                </span>
+                <span className="text-base text-muted">{guestEmail}</span>
               </div>
             </div>
           )}
@@ -294,7 +324,10 @@ export default function CommentSection({
       {comments.length > 0 && (
         <div className="space-y-2">
           {comments.map((c) => (
-            <div key={c.id} className="bg-surface border border-border rounded-xl px-5 py-4">
+            <div
+              key={c.id}
+              className="bg-surface border border-border rounded-xl px-5 py-4"
+            >
               <div className="flex gap-3">
                 <Avatar comment={c} size={8} />
 
@@ -315,8 +348,19 @@ export default function CommentSection({
                         className="text-muted hover:text-red-400 transition-colors flex-shrink-0 mt-1"
                         aria-label="ลบความคิดเห็น"
                       >
-                        <svg width="13" height="13" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
-                          <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+                        <svg
+                          width="13"
+                          height="13"
+                          fill="none"
+                          viewBox="0 0 24 24"
+                          stroke="currentColor"
+                          strokeWidth="2"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            d="M6 18L18 6M6 6l12 12"
+                          />
                         </svg>
                       </button>
                     )}
@@ -366,8 +410,19 @@ export default function CommentSection({
                               className="text-muted hover:text-red-400 transition-colors flex-shrink-0 mt-1"
                               aria-label="ลบความคิดเห็น"
                             >
-                              <svg width="11" height="11" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
-                                <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+                              <svg
+                                width="11"
+                                height="11"
+                                fill="none"
+                                viewBox="0 0 24 24"
+                                stroke="currentColor"
+                                strokeWidth="2"
+                              >
+                                <path
+                                  strokeLinecap="round"
+                                  strokeLinejoin="round"
+                                  d="M6 18L18 6M6 6l12 12"
+                                />
                               </svg>
                             </button>
                           )}
@@ -394,7 +449,10 @@ export default function CommentSection({
                           value={guestName}
                           onChange={(e) => {
                             setGuestName(e.target.value);
-                            sessionStorage.setItem("guest_name", e.target.value);
+                            sessionStorage.setItem(
+                              "guest_name",
+                              e.target.value,
+                            );
                           }}
                           maxLength={50}
                           placeholder="ชื่อของคุณ"
