@@ -227,7 +227,7 @@ export default function CommentSection({
   return (
     <div className="mt-10 space-y-3">
       {/* Comment input card */}
-      <div className="bg-surface border border-white/10 rounded-xl overflow-hidden">
+      <div className="bg-surface border border-border rounded-xl overflow-hidden">
         <div className="px-5 pt-5 pb-1">
           <h3 className="text-sm font-bold text-text mb-4">
             ความคิดเห็น ({totalCount})
@@ -246,7 +246,7 @@ export default function CommentSection({
                 }}
                 maxLength={50}
                 placeholder="ชื่อของคุณ"
-                className="flex-1 bg-bg border border-white/10 rounded-lg px-3 py-1.5 text-sm text-text outline-none focus:ring-2 focus:ring-inset focus:ring-accent focus:border-transparent"
+                className="flex-1 bg-bg border border-border rounded-lg px-3 py-1.5 text-sm text-text outline-none focus:ring-2 focus:ring-inset focus:ring-accent focus:border-transparent"
               />
               <span className="text-xs text-muted truncate max-w-[160px]">
                 {guestEmail}
@@ -268,7 +268,7 @@ export default function CommentSection({
               placeholder="แสดงความคิดเห็น..."
               rows={2}
               maxLength={1000}
-              className="flex-1 bg-bg border border-white/10 rounded-lg px-3 py-2 text-sm text-text placeholder:text-muted outline-none focus:ring-2 focus:ring-inset focus:ring-accent focus:border-transparent resize-none"
+              className="flex-1 bg-bg border border-border rounded-lg px-3 py-2 text-sm text-text placeholder:text-muted outline-none focus:ring-2 focus:ring-inset focus:ring-accent focus:border-transparent resize-none"
             />
             <button
               type="submit"
@@ -285,7 +285,7 @@ export default function CommentSection({
       {comments.length > 0 && (
         <div className="space-y-2">
           {comments.map((c) => (
-            <div key={c.id} className="bg-surface border border-white/10 rounded-xl px-5 py-4">
+            <div key={c.id} className="bg-surface border border-border rounded-xl px-5 py-4">
               <div className="flex gap-3">
                 <Avatar comment={c} size={8} />
 
@@ -323,7 +323,7 @@ export default function CommentSection({
                         setReplyingTo(replyingTo === c.id ? null : c.id);
                         setReplyContent("");
                       }}
-                      className="text-xs border border-white/10 text-muted hover:border-accent hover:text-accent transition-colors rounded-full px-3 py-1"
+                      className="text-xs border border-border text-muted hover:border-accent hover:text-accent transition-colors rounded-full px-3 py-1"
                     >
                       ตอบกลับ
                     </button>
@@ -333,7 +333,7 @@ export default function CommentSection({
 
               {/* Replies */}
               {c.replies.length > 0 && (
-                <div className="ml-11 mt-3 space-y-3 border-l-2 border-white/10 pl-4">
+                <div className="ml-11 mt-3 space-y-3 border-l-2 border-border pl-4">
                   {c.replies.map((r) => (
                     <div key={r.id} className="flex gap-2">
                       <Avatar comment={r} size={6} />
@@ -373,7 +373,7 @@ export default function CommentSection({
               {/* Inline reply form */}
               {replyingTo === c.id && (
                 <div className="ml-10 mt-3 border-l-2 border-accent/40 pl-3">
-                  <div className="bg-bg border border-white/10 rounded-lg p-3 space-y-2">
+                  <div className="bg-bg border border-border rounded-lg p-3 space-y-2">
                     {!isLoggedIn && (
                       <div className="flex items-center gap-2">
                         <input
@@ -385,7 +385,7 @@ export default function CommentSection({
                           }}
                           maxLength={50}
                           placeholder="ชื่อของคุณ"
-                          className="flex-1 bg-surface border border-white/10 rounded-md px-2 py-1 text-xs text-text outline-none focus:ring-2 focus:ring-inset focus:ring-accent focus:border-transparent"
+                          className="flex-1 bg-surface border border-border rounded-md px-2 py-1 text-xs text-text outline-none focus:ring-2 focus:ring-inset focus:ring-accent focus:border-transparent"
                         />
                       </div>
                     )}
@@ -396,7 +396,7 @@ export default function CommentSection({
                         placeholder={`ตอบกลับ ${getDisplayName(c)}...`}
                         rows={2}
                         maxLength={1000}
-                        className="flex-1 bg-surface border border-white/10 rounded-md px-2 py-1.5 text-xs text-text placeholder:text-muted outline-none focus:ring-2 focus:ring-inset focus:ring-accent focus:border-transparent resize-none"
+                        className="flex-1 bg-surface border border-border rounded-md px-2 py-1.5 text-xs text-text placeholder:text-muted outline-none focus:ring-2 focus:ring-inset focus:ring-accent focus:border-transparent resize-none"
                         autoFocus
                       />
                       <div className="flex flex-col gap-1 self-end">
@@ -427,7 +427,7 @@ export default function CommentSection({
       )}
 
       {comments.length === 0 && (
-        <div className="bg-surface border border-white/10 rounded-xl px-5 py-10 text-center">
+        <div className="bg-surface border border-border rounded-xl px-5 py-10 text-center">
           <p className="text-sm text-muted">
             ยังไม่มีความคิดเห็น เป็นคนแรกที่แสดงความคิดเห็น!
           </p>
