@@ -248,21 +248,25 @@ export default function CommentSection({
 
         <form onSubmit={handleSubmit} className="px-5 pb-5 space-y-3">
           {!isLoggedIn && (
-            <div className="flex items-center gap-2">
-              <input
-                type="text"
-                value={guestName}
-                onChange={(e) => {
-                  setGuestName(e.target.value);
-                  sessionStorage.setItem("guest_name", e.target.value);
-                }}
-                maxLength={50}
-                placeholder="ชื่อ"
-                className="w-28 bg-bg border border-border rounded-lg px-2 py-1 text-xs text-text outline-none focus:border-white/40 transition-colors"
-              />
-              <span className="text-xs text-muted truncate max-w-[160px]">
-                {guestEmail}
-              </span>
+            <div className="flex items-center gap-4 flex-wrap">
+              <div className="flex items-center gap-2">
+                <span className="text-sm text-muted font-medium whitespace-nowrap">Username:</span>
+                <input
+                  type="text"
+                  value={guestName}
+                  onChange={(e) => {
+                    setGuestName(e.target.value);
+                    sessionStorage.setItem("guest_name", e.target.value);
+                  }}
+                  maxLength={50}
+                  placeholder="ชื่อของคุณ"
+                  className="w-40 bg-bg border border-border rounded-lg px-3 py-1.5 text-sm text-text outline-none focus:border-white/40 transition-colors"
+                />
+              </div>
+              <div className="flex items-center gap-2">
+                <span className="text-sm text-muted font-medium whitespace-nowrap">Email:</span>
+                <span className="text-sm text-muted">{guestEmail}</span>
+              </div>
             </div>
           )}
 
