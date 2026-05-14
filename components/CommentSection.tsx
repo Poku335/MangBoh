@@ -313,9 +313,11 @@ export default function CommentSection({
                     )}
                   </div>
 
-                  <p className="text-sm text-text leading-relaxed break-words mt-2">
-                    {c.content}
-                  </p>
+                  <div className="mt-2 border border-border rounded-lg px-3 py-2">
+                    <p className="text-sm text-text leading-relaxed break-words">
+                      {c.content}
+                    </p>
+                  </div>
 
                   <div className="flex justify-end mt-3">
                     <button
@@ -361,9 +363,11 @@ export default function CommentSection({
                             </button>
                           )}
                         </div>
-                        <p className="text-xs text-text leading-relaxed break-words mt-1.5">
-                          {r.content}
-                        </p>
+                        <div className="mt-1.5 border border-border rounded-lg px-3 py-2">
+                          <p className="text-xs text-text leading-relaxed break-words">
+                            {r.content}
+                          </p>
+                        </div>
                       </div>
                     </div>
                   ))}
