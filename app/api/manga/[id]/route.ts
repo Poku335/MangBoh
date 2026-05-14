@@ -45,20 +45,15 @@ export async function PATCH(
   const isAuthor = manga.authorId === parseInt(user.id);
   if (!isAdmin && !isAuthor) return NextResponse.json({ error: "Forbidden" }, { status: 403 });
 
-  const body = await req.json() as {
-    title?: string;
-    status?: string;
-    genre?: string;
-    description?: string;
-  };
+  const body = await req.json();
 
   const updated = await prisma.manga.update({
     where: { id: mangaId },
     data: {
-      ...(body.title !== undefined && { title: body.title.trim() }),
-      ...(body.status !== undefined && { status: body.status }),
-      ...(body.genre !== undefined && { genre: body.genre }),
-      ...(body.description !== undefined && { description: body.description.trim() }),
+      ...(typeof body.title === "string" && { title: body.title.trim() }),
+      ...(typeof body.status === "string" && { status: body.status }),
+      ...(typeof body.genre === "string" && { genre: body.genre }),
+      ...(typeof body.description === "string" && { description: body.description.trim() }),
     },
   });
 

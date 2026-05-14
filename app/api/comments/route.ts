@@ -88,6 +88,11 @@ export async function POST(req: NextRequest) {
   const trimmed = content.trim().slice(0, 1000).replace(/[<>]/g, (c: string) => (c === "<" ? "&lt;" : "&gt;"));
   const parsedMangaId = parseInt(mangaId);
 
+  const mangaExists = await prisma.manga.findUnique({ where: { id: parsedMangaId }, select: { id: true } });
+  if (!mangaExists) {
+    return NextResponse.json({ error: "Manga not found" }, { status: 404 });
+  }
+
   // Validate parentId if provided
   let resolvedParentId: number | null = null;
   if (parentId != null) {

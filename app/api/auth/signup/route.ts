@@ -22,7 +22,8 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: "รหัสผ่านต้องมีอย่างน้อย 6 ตัวอักษร" }, { status: 400 });
     }
 
-    const existing = await prisma.user.findUnique({ where: { email: email.toLowerCase() } });
+    const normalizedEmail = email.toLowerCase().trim();
+    const existing = await prisma.user.findUnique({ where: { email: normalizedEmail } });
     if (existing) {
       return NextResponse.json({ error: "อีเมลนี้ถูกใช้งานแล้ว" }, { status: 409 });
     }
@@ -31,7 +32,7 @@ export async function POST(req: NextRequest) {
     await prisma.user.create({
       data: {
         name: name.trim(),
-        email: email.toLowerCase(),
+        email: normalizedEmail,
         password: hashed,
         role: "USER",
         coins: 0,

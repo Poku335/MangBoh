@@ -4,8 +4,6 @@ import { notFound } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
 import { incrementView } from "./actions";
-
-export const revalidate = 60;
 import { auth } from "@/lib/auth";
 import { getSessionUser } from "@/lib/session";
 import ChapterList from "@/components/ChapterList";
@@ -74,6 +72,7 @@ export default async function MangaDetailPage({
     where: { id: mangaId },
     include: {
       chapters: {
+        where: isAdmin ? undefined : { isHidden: false },
         orderBy: { chapterNumber: "desc" },
         include: { _count: { select: { pages: true } } },
       },

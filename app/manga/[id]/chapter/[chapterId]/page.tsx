@@ -68,6 +68,12 @@ export default async function ChapterReaderPage({
   const user = getSessionUser(session);
   const userId = user?.id ? parseInt(user.id) : null;
 
+  if (chapter.isHidden) {
+    const isAdmin = user?.role === "ADMIN";
+    const isAuthor = userId !== null && chapter.manga.author?.id === userId;
+    if (!isAdmin && !isAuthor) notFound();
+  }
+
   if (chapter.isPaid) {
     const purchase = userId
       ? await prisma.purchase.findUnique({

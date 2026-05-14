@@ -34,7 +34,11 @@ export async function POST(req: NextRequest) {
     prisma.passwordResetOtp.create({ data: { email: normalizedEmail, otp, expiresAt } }),
   ]);
 
-  await sendOtpEmail(normalizedEmail, otp);
+  try {
+    await sendOtpEmail(normalizedEmail, otp);
+  } catch (emailErr) {
+    console.error("Failed to send OTP email:", emailErr);
+  }
 
   const { ip, userAgent } = getReqMeta(req);
   await log({ userId: user.id, type: "AUTH", action: "password_reset_request", ip, userAgent });
