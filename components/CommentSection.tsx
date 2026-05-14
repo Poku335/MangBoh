@@ -129,6 +129,7 @@ export default function CommentSection({
   // Guest identity — generated once per session, stored in sessionStorage
   const [guestName, setGuestName] = useState("");
   const [guestEmail, setGuestEmail] = useState("");
+  const [showToast, setShowToast] = useState(false);
 
   const isLoggedIn = currentUserId !== null;
 
@@ -166,6 +167,8 @@ export default function CommentSection({
       const comment = (await res.json()) as Comment;
       setComments((prev) => [{ ...comment, replies: [] }, ...prev]);
       setContent("");
+      setShowToast(true);
+      setTimeout(() => setShowToast(false), 3000);
     }
     setSubmitting(false);
   }
@@ -226,6 +229,15 @@ export default function CommentSection({
 
   return (
     <div className="mt-10 space-y-3">
+      {/* Toast notification */}
+      <div className={`fixed bottom-6 left-1/2 -translate-x-1/2 z-50 transition-all duration-300 ${showToast ? "opacity-100 translate-y-0" : "opacity-0 translate-y-2 pointer-events-none"}`}>
+        <div className="bg-surface border border-border rounded-xl px-5 py-3 flex items-center gap-2 shadow-lg">
+          <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5" className="text-green-400 flex-shrink-0">
+            <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+          </svg>
+          <span className="text-sm text-text font-medium">ส่งความคิดเห็นแล้ว</span>
+        </div>
+      </div>
       {/* Comment input card */}
       <div className="bg-surface border border-border rounded-xl overflow-hidden">
         <div className="px-5 pt-5 pb-1">
@@ -245,8 +257,8 @@ export default function CommentSection({
                   sessionStorage.setItem("guest_name", e.target.value);
                 }}
                 maxLength={50}
-                placeholder="ชื่อของคุณ"
-                className="flex-1 bg-bg border border-border rounded-lg px-3 py-1.5 text-sm text-text outline-none focus:border-white/40 transition-colors"
+                placeholder="ชื่อ"
+                className="w-28 bg-bg border border-border rounded-lg px-2 py-1 text-xs text-text outline-none focus:border-white/40 transition-colors"
               />
               <span className="text-xs text-muted truncate max-w-[160px]">
                 {guestEmail}
