@@ -313,7 +313,7 @@ export default function CommentSection({
                     )}
                   </div>
 
-                  <div className="mt-2 border border-border rounded-lg px-3 py-2">
+                  <div className="mt-2 border border-border rounded-lg px-3 py-3 min-h-[64px]">
                     <p className="text-sm text-text leading-relaxed break-words">
                       {c.content}
                     </p>
