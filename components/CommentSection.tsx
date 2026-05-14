@@ -266,19 +266,35 @@ export default function CommentSection({
       </div>
       {/* Comment input card */}
       <div className="bg-surface border border-border rounded-xl overflow-hidden">
-        <div className="px-5 pt-5 pb-1">
-          <h3 className="text-sm font-bold text-text mb-4">
-            ความคิดเห็น ({totalCount})
+        <div className="px-5 pt-5 pb-2">
+          <h3 className="text-base font-bold text-text">
+            ใส่ความเห็น
           </h3>
         </div>
 
-        <form onSubmit={handleSubmit} className="px-5 pb-5 space-y-3">
+        <form onSubmit={handleSubmit} className="px-5 pb-5 space-y-4">
+          {/* Textarea */}
+          <div className="space-y-1">
+            <label className="text-sm text-text font-medium">
+              ความเห็น <span className="text-accent">*</span>
+            </label>
+            <textarea
+              value={content}
+              onChange={(e) => setContent(e.target.value)}
+              placeholder="แสดงความคิดเห็น..."
+              rows={5}
+              maxLength={1000}
+              className="w-full bg-bg border border-border rounded-lg px-3 py-2 text-sm text-text placeholder:text-muted outline-none focus:border-white/40 resize-none transition-colors"
+            />
+          </div>
+
+          {/* Name + Email side by side (guest only) */}
           {!isLoggedIn && (
-            <div className="flex items-center gap-4 flex-wrap">
-              <div className="flex items-center">
-                <span className="text-base text-muted font-medium whitespace-nowrap">
-                  ชื่อผู้ใช้:
-                </span>
+            <div className="grid grid-cols-2 gap-4">
+              <div className="space-y-1">
+                <label className="text-sm text-text font-medium">
+                  ชื่อ <span className="text-accent">*</span>
+                </label>
                 <input
                   type="text"
                   value={guestName}
@@ -287,36 +303,25 @@ export default function CommentSection({
                     sessionStorage.setItem("guest_name", e.target.value);
                   }}
                   maxLength={50}
-                  placeholder="ชื่อของคุณ"
-                  className="w-44 bg-bg border border-border rounded-lg px-3 py-1.5 text-base text-text outline-none focus:border-white/40 transition-colors"
+                  className="w-full bg-bg border border-border rounded-lg px-3 py-2 text-sm text-text outline-none focus:border-white/40 transition-colors"
                 />
               </div>
-              <div className="flex items-center gap-1">
-                <span className="text-base text-muted font-medium whitespace-nowrap">
-                  Email:
-                </span>
-                <span className="text-base text-muted">{guestEmail}</span>
+              <div className="space-y-1">
+                <label className="text-sm text-text font-medium">อีเมล</label>
+                <div className="w-full bg-bg border border-border rounded-lg px-3 py-2 text-sm text-muted truncate">
+                  {guestEmail}
+                </div>
               </div>
             </div>
           )}
 
-          <div className="flex gap-3">
-            <textarea
-              value={content}
-              onChange={(e) => setContent(e.target.value)}
-              placeholder="แสดงความคิดเห็น..."
-              rows={2}
-              maxLength={1000}
-              className="flex-1 bg-bg border border-border rounded-lg px-3 py-2 text-sm text-text placeholder:text-muted outline-none focus:border-white/40 resize-none transition-colors"
-            />
-            <button
-              type="submit"
-              disabled={submitting || !content.trim()}
-              className="self-end bg-accent text-white text-sm font-semibold px-4 py-2 rounded-lg hover:bg-accent-hover transition-colors disabled:opacity-50"
-            >
-              {submitting ? "กำลังส่ง..." : "ส่ง"}
-            </button>
-          </div>
+          <button
+            type="submit"
+            disabled={submitting || !content.trim()}
+            className="bg-accent text-white text-sm font-semibold px-6 py-2 rounded-lg hover:bg-accent-hover transition-colors disabled:opacity-50"
+          >
+            {submitting ? "กำลังส่ง..." : "ส่งความเห็น"}
+          </button>
         </form>
       </div>
 
