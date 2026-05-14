@@ -151,7 +151,7 @@ export default function CreateComicPage() {
                   onChange={(e) => set("title", e.target.value)}
                   maxLength={120}
                   placeholder="ชื่อเรื่อง"
-                  className="w-full bg-bg border border-border rounded-lg px-3 py-2 text-sm text-text placeholder:text-muted outline-none focus:ring-2 focus:ring-inset focus:ring-accent focus:border-transparent"
+                  className="w-full bg-bg border border-border rounded-lg px-3 py-2 text-sm text-text placeholder:text-muted outline-none focus:border-white/40 transition-colors"
                 />
               </div>
               <div>
@@ -167,7 +167,7 @@ export default function CreateComicPage() {
                   onChange={(e) => set("altTitle", e.target.value)}
                   maxLength={120}
                   placeholder="ชื่อเรื่องต้นฉบับ"
-                  className="w-full bg-bg border border-border rounded-lg px-3 py-2 text-sm text-text placeholder:text-muted outline-none focus:ring-2 focus:ring-inset focus:ring-accent focus:border-transparent"
+                  className="w-full bg-bg border border-border rounded-lg px-3 py-2 text-sm text-text placeholder:text-muted outline-none focus:border-white/40 transition-colors"
                 />
               </div>
             </div>
@@ -181,7 +181,7 @@ export default function CreateComicPage() {
                 <select
                   value={form.genre}
                   onChange={(e) => set("genre", e.target.value)}
-                  className="w-full bg-bg border border-border rounded-lg px-3 py-2 text-sm text-text outline-none focus:ring-2 focus:ring-inset focus:ring-accent focus:border-transparent"
+                  className="w-full bg-bg border border-border rounded-lg px-3 py-2 text-sm text-text outline-none focus:border-white/40 transition-colors"
                 >
                   <option value="">เลือกหมวดหมู่หลัก</option>
                   {MAIN_GENRES.map((g) => <option key={g} value={g}>{g}</option>)}
@@ -192,7 +192,7 @@ export default function CreateComicPage() {
                 <select
                   value={form.subGenre}
                   onChange={(e) => set("subGenre", e.target.value)}
-                  className="w-full bg-bg border border-border rounded-lg px-3 py-2 text-sm text-text outline-none focus:ring-2 focus:ring-inset focus:ring-accent focus:border-transparent"
+                  className="w-full bg-bg border border-border rounded-lg px-3 py-2 text-sm text-text outline-none focus:border-white/40 transition-colors"
                 >
                   <option value="">เลือกหมวดหมู่รอง</option>
                   {SUB_GENRES.map((g) => <option key={g} value={g}>{g}</option>)}
@@ -205,7 +205,7 @@ export default function CreateComicPage() {
                 <select
                   value={form.rating}
                   onChange={(e) => set("rating", e.target.value)}
-                  className="w-full bg-bg border border-border rounded-lg px-3 py-2 text-sm text-text outline-none focus:ring-2 focus:ring-inset focus:ring-accent focus:border-transparent"
+                  className="w-full bg-bg border border-border rounded-lg px-3 py-2 text-sm text-text outline-none focus:border-white/40 transition-colors"
                 >
                   <option value="">เลือกระดับเนื้อหา</option>
                   {RATINGS.map((r) => <option key={r.value} value={r.value}>{r.label}</option>)}
@@ -218,7 +218,7 @@ export default function CreateComicPage() {
                 <select
                   value={form.contentType}
                   onChange={(e) => set("contentType", e.target.value)}
-                  className="w-full bg-bg border border-border rounded-lg px-3 py-2 text-sm text-text outline-none focus:ring-2 focus:ring-inset focus:ring-accent focus:border-transparent"
+                  className="w-full bg-bg border border-border rounded-lg px-3 py-2 text-sm text-text outline-none focus:border-white/40 transition-colors"
                 >
                   {CONTENT_TYPES.map((c) => <option key={c.value} value={c.value}>{c.label}</option>)}
                 </select>
@@ -228,7 +228,7 @@ export default function CreateComicPage() {
                 <select
                   value={form.storyType}
                   onChange={(e) => set("storyType", e.target.value)}
-                  className="w-full bg-bg border border-border rounded-lg px-3 py-2 text-sm text-text outline-none focus:ring-2 focus:ring-inset focus:ring-accent focus:border-transparent"
+                  className="w-full bg-bg border border-border rounded-lg px-3 py-2 text-sm text-text outline-none focus:border-white/40 transition-colors"
                 >
                   {STORY_TYPES.map((s) => <option key={s.value} value={s.value}>{s.label}</option>)}
                 </select>
@@ -238,7 +238,7 @@ export default function CreateComicPage() {
                 <select
                   value={form.mangaType}
                   onChange={(e) => set("mangaType", e.target.value)}
-                  className="w-full bg-bg border border-border rounded-lg px-3 py-2 text-sm text-text outline-none focus:ring-2 focus:ring-inset focus:ring-accent focus:border-transparent"
+                  className="w-full bg-bg border border-border rounded-lg px-3 py-2 text-sm text-text outline-none focus:border-white/40 transition-colors"
                 >
                   {MANGA_TYPES.map((t) => <option key={t.value} value={t.value}>{t.label}</option>)}
                 </select>
@@ -260,7 +260,7 @@ export default function CreateComicPage() {
                 maxLength={200}
                 placeholder="คำโปรย"
                 rows={2}
-                className="w-full bg-bg border border-border rounded-lg px-3 py-2 text-sm text-text placeholder:text-muted outline-none focus:ring-2 focus:ring-inset focus:ring-accent focus:border-transparent resize-none"
+                className="w-full bg-bg border border-border rounded-lg px-3 py-2 text-sm text-text placeholder:text-muted outline-none focus:border-white/40 transition-colors resize-none"
               />
             </div>
           </div>
@@ -286,7 +286,7 @@ export default function CreateComicPage() {
             onChange={(e) => setForm((f) => ({ ...f, description: e.target.value }))}
             placeholder="พิมพ์เนื้อหาตรงนี้"
             rows={8}
-            className="w-full bg-bg border border-border border-t-0 rounded-b-lg px-3 py-3 text-sm text-text placeholder:text-muted outline-none focus:ring-2 focus:ring-inset focus:ring-accent focus:border-transparent resize-none"
+            className="w-full bg-bg border border-border border-t-0 rounded-b-lg px-3 py-3 text-sm text-text placeholder:text-muted outline-none focus:border-white/40 transition-colors resize-none"
           />
         </div>
 

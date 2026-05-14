@@ -284,7 +284,7 @@ export default function AdminDashboard() {
                 value={searchManga}
                 onChange={(e) => setSearchManga(e.target.value)}
                 placeholder="ค้นหาการ์ตูน..."
-                className="w-full bg-surface border border-border rounded-lg pl-8 pr-3 py-2 text-sm text-text outline-none focus:ring-2 focus:ring-inset focus:ring-accent focus:border-transparent"
+                className="w-full bg-surface border border-border rounded-lg pl-8 pr-3 py-2 text-sm text-text outline-none focus:border-white/40 transition-colors"
               />
             </div>
           </div>
@@ -398,7 +398,7 @@ export default function AdminDashboard() {
                 value={searchUser}
                 onChange={(e) => setSearchUser(e.target.value)}
                 placeholder="ค้นหาผู้ใช้..."
-                className="w-full bg-surface border border-border rounded-lg pl-8 pr-3 py-2 text-sm text-text outline-none focus:ring-2 focus:ring-inset focus:ring-accent focus:border-transparent"
+                className="w-full bg-surface border border-border rounded-lg pl-8 pr-3 py-2 text-sm text-text outline-none focus:border-white/40 transition-colors"
               />
             </div>
           </div>
@@ -489,7 +489,7 @@ export default function AdminDashboard() {
                   value={searchRevenue}
                   onChange={(e) => setSearchRevenue(e.target.value)}
                   placeholder="ค้นหาชื่อ / อีเมล..."
-                  className="w-full bg-bg border border-border rounded-lg pl-8 pr-3 py-2 text-sm text-text outline-none focus:ring-2 focus:ring-inset focus:ring-accent focus:border-transparent"
+                  className="w-full bg-bg border border-border rounded-lg pl-8 pr-3 py-2 text-sm text-text outline-none focus:border-white/40 transition-colors"
                 />
               </div>
             </div>
@@ -570,7 +570,7 @@ export default function AdminDashboard() {
               value={coinsAmount}
               onChange={(e) => setCoinsAmount(e.target.value)}
               placeholder="เช่น 100 หรือ -50"
-              className="w-full bg-bg border border-border rounded-lg px-4 py-2.5 text-sm text-text outline-none focus:ring-2 focus:ring-inset focus:ring-accent focus:border-transparent mb-5"
+              className="w-full bg-bg border border-border rounded-lg px-4 py-2.5 text-sm text-text outline-none focus:border-white/40 transition-colors mb-5"
             />
             <div className="flex gap-2">
               <button onClick={handleUpdateCoins} className="flex-1 bg-accent text-white font-semibold px-4 py-2 rounded-lg text-sm hover:bg-accent-hover transition-colors">บันทึก</button>
@@ -592,7 +592,7 @@ export default function AdminDashboard() {
                   type="text"
                   value={editForm.title}
                   onChange={(e) => setEditForm((f) => ({ ...f, title: e.target.value }))}
-                  className="w-full bg-bg border border-border rounded-lg px-3 py-2 text-sm text-text outline-none focus:ring-2 focus:ring-inset focus:ring-accent focus:border-transparent"
+                  className="w-full bg-bg border border-border rounded-lg px-3 py-2 text-sm text-text outline-none focus:border-white/40 transition-colors"
                 />
               </div>
               <div>
@@ -600,7 +600,7 @@ export default function AdminDashboard() {
                 <select
                   value={editForm.status}
                   onChange={(e) => setEditForm((f) => ({ ...f, status: e.target.value }))}
-                  className="w-full bg-bg border border-border rounded-lg px-3 py-2 text-sm text-text outline-none focus:ring-2 focus:ring-inset focus:ring-accent focus:border-transparent"
+                  className="w-full bg-bg border border-border rounded-lg px-3 py-2 text-sm text-text outline-none focus:border-white/40 transition-colors"
                 >
                   {STATUS_OPTIONS.map((s) => (
                     <option key={s} value={s}>{STATUS_LABEL[s] ?? s}</option>
@@ -612,7 +612,7 @@ export default function AdminDashboard() {
                 <select
                   value={editForm.genre}
                   onChange={(e) => setEditForm((f) => ({ ...f, genre: e.target.value }))}
-                  className="w-full bg-bg border border-border rounded-lg px-3 py-2 text-sm text-text outline-none focus:ring-2 focus:ring-inset focus:ring-accent focus:border-transparent"
+                  className="w-full bg-bg border border-border rounded-lg px-3 py-2 text-sm text-text outline-none focus:border-white/40 transition-colors"
                 >
                   <option value="">-- เลือกประเภท --</option>
                   {MAIN_GENRES.map((g) => (

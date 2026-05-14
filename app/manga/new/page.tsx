@@ -88,7 +88,7 @@ export default function NewMangaPage() {
             name="title"
             required
             placeholder="Manga title"
-            className="w-full bg-surface border border-border rounded px-3 py-2 text-sm text-text placeholder:text-muted outline-none focus:ring-2 focus:ring-inset focus:ring-accent focus:border-transparent"
+            className="w-full bg-surface border border-border rounded px-3 py-2 text-sm text-text placeholder:text-muted outline-none focus:border-white/40 transition-colors"
           />
         </div>
 
@@ -102,7 +102,7 @@ export default function NewMangaPage() {
             required
             rows={4}
             placeholder="Synopsis / description..."
-            className="w-full bg-surface border border-border rounded px-3 py-2 text-sm text-text placeholder:text-muted outline-none focus:ring-2 focus:ring-inset focus:ring-accent focus:border-transparent resize-none"
+            className="w-full bg-surface border border-border rounded px-3 py-2 text-sm text-text placeholder:text-muted outline-none focus:border-white/40 transition-colors resize-none"
           />
         </div>
 
@@ -112,7 +112,7 @@ export default function NewMangaPage() {
             <label className="block text-sm font-medium mb-1.5 text-muted">Genre</label>
             <select
               name="genre"
-              className="w-full bg-surface border border-border rounded px-3 py-2 text-sm text-text outline-none focus:ring-2 focus:ring-inset focus:ring-accent focus:border-transparent"
+              className="w-full bg-surface border border-border rounded px-3 py-2 text-sm text-text outline-none focus:border-white/40 transition-colors"
             >
               {GENRES.map((g) => (
                 <option key={g} value={g}>
@@ -125,7 +125,7 @@ export default function NewMangaPage() {
             <label className="block text-sm font-medium mb-1.5 text-muted">Status</label>
             <select
               name="status"
-              className="w-full bg-surface border border-border rounded px-3 py-2 text-sm text-text outline-none focus:ring-2 focus:ring-inset focus:ring-accent focus:border-transparent"
+              className="w-full bg-surface border border-border rounded px-3 py-2 text-sm text-text outline-none focus:border-white/40 transition-colors"
             >
               {STATUSES.map((s) => (
                 <option key={s} value={s}>
@@ -139,7 +139,7 @@ export default function NewMangaPage() {
             <select
               name="type"
               defaultValue="MANHWA"
-              className="w-full bg-surface border border-border rounded px-3 py-2 text-sm text-text outline-none focus:ring-2 focus:ring-inset focus:ring-accent focus:border-transparent"
+              className="w-full bg-surface border border-border rounded px-3 py-2 text-sm text-text outline-none focus:border-white/40 transition-colors"
             >
               {MANGA_TYPES.map((t) => (
                 <option key={t.value} value={t.value}>

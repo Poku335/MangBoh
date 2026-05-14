@@ -246,19 +246,12 @@ export default function CommentSection({
                 }}
                 maxLength={50}
                 placeholder="ชื่อของคุณ"
-                className="flex-1 bg-bg border border-border rounded-lg px-3 py-1.5 text-sm text-text outline-none focus:ring-2 focus:ring-inset focus:ring-accent focus:border-transparent"
+                className="flex-1 bg-bg border border-border rounded-lg px-3 py-1.5 text-sm text-text outline-none focus:border-white/40 transition-colors"
               />
               <span className="text-xs text-muted truncate max-w-[160px]">
                 {guestEmail}
               </span>
             </div>
-          )}
-
-          {isLoggedIn && (
-            <p className="text-xs text-muted">
-              กำลังโพสต์ในนาม{" "}
-              <span className="text-text font-medium">คุณ</span>
-            </p>
           )}
 
           <div className="flex gap-3">
@@ -268,7 +261,7 @@ export default function CommentSection({
               placeholder="แสดงความคิดเห็น..."
               rows={2}
               maxLength={1000}
-              className="flex-1 bg-bg border border-border rounded-lg px-3 py-2 text-sm text-text placeholder:text-muted outline-none focus:ring-2 focus:ring-inset focus:ring-accent focus:border-transparent resize-none"
+              className="flex-1 bg-bg border border-border rounded-lg px-3 py-2 text-sm text-text placeholder:text-muted outline-none focus:border-white/40 resize-none transition-colors"
             />
             <button
               type="submit"
@@ -389,7 +382,7 @@ export default function CommentSection({
                           }}
                           maxLength={50}
                           placeholder="ชื่อของคุณ"
-                          className="flex-1 bg-surface border border-border rounded-md px-2 py-1 text-xs text-text outline-none focus:ring-2 focus:ring-inset focus:ring-accent focus:border-transparent"
+                          className="flex-1 bg-surface border border-border rounded-md px-2 py-1 text-xs text-text outline-none focus:border-white/40 transition-colors"
                         />
                       </div>
                     )}
@@ -400,7 +393,7 @@ export default function CommentSection({
                         placeholder={`ตอบกลับ ${getDisplayName(c)}...`}
                         rows={2}
                         maxLength={1000}
-                        className="flex-1 bg-surface border border-border rounded-md px-2 py-1.5 text-xs text-text placeholder:text-muted outline-none focus:ring-2 focus:ring-inset focus:ring-accent focus:border-transparent resize-none"
+                        className="flex-1 bg-surface border border-border rounded-md px-2 py-1.5 text-xs text-text placeholder:text-muted outline-none focus:border-white/40 transition-colors resize-none"
                         autoFocus
                       />
                       <div className="flex flex-col gap-1 self-end">

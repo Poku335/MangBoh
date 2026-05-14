@@ -149,7 +149,7 @@ export default function AdminMangaChaptersPage() {
               min="0"
               required
               placeholder="เช่น 1, 1.5"
-              className="w-full bg-bg border border-border rounded-lg px-3 py-2.5 text-sm text-text outline-none focus:ring-2 focus:ring-inset focus:ring-accent focus:border-transparent transition-colors"
+              className="w-full bg-bg border border-border rounded-lg px-3 py-2.5 text-sm text-text outline-none focus:border-white/40 transition-colors transition-colors"
             />
           </div>
           <div>
@@ -157,7 +157,7 @@ export default function AdminMangaChaptersPage() {
             <input
               name="title"
               placeholder="ชื่อตอน..."
-              className="w-full bg-bg border border-border rounded-lg px-3 py-2.5 text-sm text-text outline-none focus:ring-2 focus:ring-inset focus:ring-accent focus:border-transparent transition-colors"
+              className="w-full bg-bg border border-border rounded-lg px-3 py-2.5 text-sm text-text outline-none focus:border-white/40 transition-colors transition-colors"
             />
           </div>
           <button
@@ -258,7 +258,7 @@ export default function AdminMangaChaptersPage() {
                             min="1"
                             value={editingPrice[ch.id] ?? ch.price}
                             onChange={(e) => setEditingPrice((p) => ({ ...p, [ch.id]: e.target.value }))}
-                            className="w-16 bg-bg border border-border rounded-lg px-2 py-1.5 text-xs text-text outline-none focus:ring-2 focus:ring-inset focus:ring-accent focus:border-transparent text-center"
+                            className="w-16 bg-bg border border-border rounded-lg px-2 py-1.5 text-xs text-text outline-none focus:border-white/40 transition-colors text-center"
                           />
                           <button
                             onClick={() => {

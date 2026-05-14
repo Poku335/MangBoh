@@ -126,7 +126,7 @@ export default function Navbar() {
                 }
               }}
               placeholder="ค้นหามังงะ การ์ตูน นิยาย..."
-              className="flex-1 bg-bg border border-border rounded-full px-4 py-2 text-sm text-text placeholder:text-muted outline-none focus:ring-2 focus:ring-inset focus:ring-accent focus:border-transparent transition-colors"
+              className="flex-1 bg-bg border border-border rounded-full px-4 py-2 text-sm text-text placeholder:text-muted outline-none focus:border-white/40 transition-colors transition-colors"
             />
             <button
               type="submit"

@@ -134,7 +134,7 @@ export default function SettingsPage() {
               value={name}
               onChange={(e) => setName(e.target.value)}
               maxLength={50}
-              className="w-full bg-bg border border-border rounded-lg px-3 py-2.5 text-sm text-text placeholder:text-muted outline-none focus:ring-2 focus:ring-inset focus:ring-accent focus:border-transparent"
+              className="w-full bg-bg border border-border rounded-lg px-3 py-2.5 text-sm text-text placeholder:text-muted outline-none focus:border-white/40 transition-colors"
               placeholder="ชื่อของคุณ"
             />
           </div>
@@ -155,7 +155,7 @@ export default function SettingsPage() {
               onChange={(e) => setCurrentPassword(e.target.value)}
               placeholder="รหัสผ่านปัจจุบัน"
               disabled={isGoogleUser}
-              className="w-full bg-bg border border-border rounded-lg px-3 py-2.5 text-sm text-text placeholder:text-muted outline-none focus:ring-2 focus:ring-inset focus:ring-accent focus:border-transparent disabled:opacity-40"
+              className="w-full bg-bg border border-border rounded-lg px-3 py-2.5 text-sm text-text placeholder:text-muted outline-none focus:border-white/40 transition-colors disabled:opacity-40"
             />
             <input
               type="password"
@@ -163,7 +163,7 @@ export default function SettingsPage() {
               onChange={(e) => setNewPassword(e.target.value)}
               placeholder="รหัสผ่านใหม่"
               disabled={isGoogleUser}
-              className="w-full bg-bg border border-border rounded-lg px-3 py-2.5 text-sm text-text placeholder:text-muted outline-none focus:ring-2 focus:ring-inset focus:ring-accent focus:border-transparent disabled:opacity-40"
+              className="w-full bg-bg border border-border rounded-lg px-3 py-2.5 text-sm text-text placeholder:text-muted outline-none focus:border-white/40 transition-colors disabled:opacity-40"
             />
             <input
               type="password"
@@ -171,7 +171,7 @@ export default function SettingsPage() {
               onChange={(e) => setConfirmPassword(e.target.value)}
               placeholder="ยืนยันรหัสผ่านใหม่"
               disabled={isGoogleUser}
-              className="w-full bg-bg border border-border rounded-lg px-3 py-2.5 text-sm text-text placeholder:text-muted outline-none focus:ring-2 focus:ring-inset focus:ring-accent focus:border-transparent disabled:opacity-40"
+              className="w-full bg-bg border border-border rounded-lg px-3 py-2.5 text-sm text-text placeholder:text-muted outline-none focus:border-white/40 transition-colors disabled:opacity-40"
             />
           </div>
         </div>

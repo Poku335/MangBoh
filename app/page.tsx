@@ -1,4 +1,4 @@
-export const dynamic = "force-dynamic";
+﻿export const dynamic = "force-dynamic";
 import { prisma } from "@/lib/prisma";
 import { auth } from "@/lib/auth";
 import Link from "next/link";
@@ -215,19 +215,19 @@ export default async function HomePage({
               name="q"
               defaultValue={sp.q || ""}
               placeholder="ค้นหา..."
-              className="bg-bg border border-border rounded-lg px-3 py-2 text-sm text-text placeholder:text-muted outline-none focus:ring-2 focus:ring-inset focus:ring-accent focus:border-transparent flex-1 min-w-32"
+              className="bg-bg border border-border rounded-lg px-3 py-2 text-sm text-text placeholder:text-muted outline-none focus:border-white/40 transition-colors flex-1 min-w-32"
             />
             <select
               name="genre"
               defaultValue={sp.genre || "All"}
-              className="bg-bg border border-border rounded-lg px-3 py-2 text-sm text-text outline-none focus:ring-2 focus:ring-inset focus:ring-accent focus:border-transparent"
+              className="bg-bg border border-border rounded-lg px-3 py-2 text-sm text-text outline-none focus:border-white/40 transition-colors"
             >
               {GENRES.map((g) => <option key={g} value={g}>{GENRE_LABELS[g] ?? g}</option>)}
             </select>
             <select
               name="status"
               defaultValue={sp.status || "All"}
-              className="bg-bg border border-border rounded-lg px-3 py-2 text-sm text-text outline-none focus:ring-2 focus:ring-inset focus:ring-accent focus:border-transparent"
+              className="bg-bg border border-border rounded-lg px-3 py-2 text-sm text-text outline-none focus:border-white/40 transition-colors"
             >
               {STATUSES.map((s) => <option key={s} value={s}>{STATUS_FILTER_LABELS[s] ?? s}</option>)}
             </select>

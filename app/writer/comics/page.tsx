@@ -84,7 +84,7 @@ export default function WriterComicsPage() {
               value={filters.title}
               onChange={(e) => setFilters({ ...filters, title: e.target.value })}
               placeholder="ชื่อเรื่อง"
-              className="w-full bg-bg border border-border rounded-lg px-3 py-2 text-sm text-text placeholder:text-muted outline-none focus:ring-2 focus:ring-inset focus:ring-accent focus:border-transparent"
+              className="w-full bg-bg border border-border rounded-lg px-3 py-2 text-sm text-text placeholder:text-muted outline-none focus:border-white/40 transition-colors"
             />
           </div>
           <div>
@@ -92,7 +92,7 @@ export default function WriterComicsPage() {
             <select
               value={filters.category}
               onChange={(e) => setFilters({ ...filters, category: e.target.value })}
-              className="bg-bg border border-border rounded-lg px-3 py-2 text-sm text-text outline-none focus:ring-2 focus:ring-inset focus:ring-accent focus:border-transparent"
+              className="bg-bg border border-border rounded-lg px-3 py-2 text-sm text-text outline-none focus:border-white/40 transition-colors"
             >
               {CATEGORIES.map((c) => <option key={c}>{c}</option>)}
             </select>
@@ -102,7 +102,7 @@ export default function WriterComicsPage() {
             <select
               value={filters.rating}
               onChange={(e) => setFilters({ ...filters, rating: e.target.value })}
-              className="bg-bg border border-border rounded-lg px-3 py-2 text-sm text-text outline-none focus:ring-2 focus:ring-inset focus:ring-accent focus:border-transparent"
+              className="bg-bg border border-border rounded-lg px-3 py-2 text-sm text-text outline-none focus:border-white/40 transition-colors"
             >
               {RATINGS.map((r) => <option key={r}>{r}</option>)}
             </select>
@@ -112,7 +112,7 @@ export default function WriterComicsPage() {
             <select
               value={filters.status}
               onChange={(e) => setFilters({ ...filters, status: e.target.value })}
-              className="bg-bg border border-border rounded-lg px-3 py-2 text-sm text-text outline-none focus:ring-2 focus:ring-inset focus:ring-accent focus:border-transparent"
+              className="bg-bg border border-border rounded-lg px-3 py-2 text-sm text-text outline-none focus:border-white/40 transition-colors"
             >
               {STATUSES.map((s) => <option key={s}>{s}</option>)}
             </select>
@@ -122,7 +122,7 @@ export default function WriterComicsPage() {
             <select
               value={filters.publish}
               onChange={(e) => setFilters({ ...filters, publish: e.target.value })}
-              className="bg-bg border border-border rounded-lg px-3 py-2 text-sm text-text outline-none focus:ring-2 focus:ring-inset focus:ring-accent focus:border-transparent"
+              className="bg-bg border border-border rounded-lg px-3 py-2 text-sm text-text outline-none focus:border-white/40 transition-colors"
             >
               {PUBLISH_OPTS.map((p) => <option key={p}>{p}</option>)}
             </select>
@@ -152,7 +152,7 @@ export default function WriterComicsPage() {
           <select
             value={pageSize}
             onChange={(e) => setPageSize(parseInt(e.target.value))}
-            className="bg-bg border border-border rounded-lg px-3 py-1.5 text-sm text-text outline-none focus:ring-2 focus:ring-inset focus:ring-accent focus:border-transparent"
+            className="bg-bg border border-border rounded-lg px-3 py-1.5 text-sm text-text outline-none focus:border-white/40 transition-colors"
           >
             {PAGE_SIZES.map((s) => <option key={s}>{s} รายการ</option>)}
           </select>
