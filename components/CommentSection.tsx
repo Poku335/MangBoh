@@ -225,11 +225,11 @@ export default function CommentSection({
     comments.length + comments.reduce((acc, c) => acc + c.replies.length, 0);
 
   return (
-    <div className="mt-10 space-y-4">
-      {/* Comment input — white card */}
-      <div className="bg-white border border-gray-200 rounded-2xl shadow-md overflow-hidden">
+    <div className="mt-10 space-y-3">
+      {/* Comment input card */}
+      <div className="bg-surface border border-white/10 rounded-xl overflow-hidden">
         <div className="px-5 pt-5 pb-1">
-          <h3 className="text-sm font-bold text-gray-800 mb-4">
+          <h3 className="text-sm font-bold text-text mb-4">
             ความคิดเห็น ({totalCount})
           </h3>
         </div>
@@ -246,18 +246,18 @@ export default function CommentSection({
                 }}
                 maxLength={50}
                 placeholder="ชื่อของคุณ"
-                className="flex-1 bg-gray-50 border border-gray-200 rounded-lg px-3 py-1.5 text-sm text-gray-800 outline-none focus:ring-2 focus:ring-accent focus:border-transparent"
+                className="flex-1 bg-bg border border-white/10 rounded-lg px-3 py-1.5 text-sm text-text outline-none focus:ring-2 focus:ring-inset focus:ring-accent focus:border-transparent"
               />
-              <span className="text-xs text-gray-400 truncate max-w-[160px]">
+              <span className="text-xs text-muted truncate max-w-[160px]">
                 {guestEmail}
               </span>
             </div>
           )}
 
           {isLoggedIn && (
-            <p className="text-xs text-gray-400">
+            <p className="text-xs text-muted">
               กำลังโพสต์ในนาม{" "}
-              <span className="text-gray-700 font-medium">คุณ</span>
+              <span className="text-text font-medium">คุณ</span>
             </p>
           )}
 
@@ -268,12 +268,12 @@ export default function CommentSection({
               placeholder="แสดงความคิดเห็น..."
               rows={2}
               maxLength={1000}
-              className="flex-1 bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 text-sm text-gray-800 placeholder:text-gray-400 outline-none focus:ring-2 focus:ring-accent focus:border-transparent resize-none"
+              className="flex-1 bg-bg border border-white/10 rounded-lg px-3 py-2 text-sm text-text placeholder:text-muted outline-none focus:ring-2 focus:ring-inset focus:ring-accent focus:border-transparent resize-none"
             />
             <button
               type="submit"
               disabled={submitting || !content.trim()}
-              className="self-end bg-accent text-white text-sm font-semibold px-5 py-2.5 rounded-xl hover:bg-accent-hover transition-colors disabled:opacity-50 shadow-sm"
+              className="self-end bg-accent text-white text-sm font-semibold px-4 py-2 rounded-lg hover:bg-accent-hover transition-colors disabled:opacity-50"
             >
               {submitting ? "กำลังส่ง..." : "ส่ง"}
             </button>
@@ -281,21 +281,21 @@ export default function CommentSection({
         </form>
       </div>
 
-      {/* Comments list — each comment is its own white card */}
+      {/* Each comment — own card with subtle white border */}
       {comments.length > 0 && (
-        <div className="space-y-3">
+        <div className="space-y-2">
           {comments.map((c) => (
-            <div key={c.id} className="bg-white border border-gray-200 rounded-2xl shadow-sm px-5 py-4">
+            <div key={c.id} className="bg-surface border border-white/10 rounded-xl px-5 py-4">
               <div className="flex gap-3">
                 <Avatar comment={c} size={8} />
 
                 <div className="flex-1 min-w-0">
                   <div className="flex items-start justify-between gap-2">
                     <div>
-                      <span className="text-sm font-semibold text-gray-800">
+                      <span className="text-sm font-semibold text-text">
                         {getDisplayName(c)}
                       </span>
-                      <p className="text-xs text-gray-400 mt-0.5">
+                      <p className="text-xs text-muted mt-0.5">
                         {formatThaiDate(c.createdAt)}
                       </p>
                     </div>
@@ -303,7 +303,7 @@ export default function CommentSection({
                     {canDelete(c) && (
                       <button
                         onClick={() => handleDelete(c.id)}
-                        className="text-gray-300 hover:text-red-400 transition-colors flex-shrink-0 mt-1"
+                        className="text-muted hover:text-red-400 transition-colors flex-shrink-0 mt-1"
                         aria-label="ลบความคิดเห็น"
                       >
                         <svg width="13" height="13" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
@@ -313,7 +313,7 @@ export default function CommentSection({
                     )}
                   </div>
 
-                  <p className="text-sm text-gray-700 leading-relaxed break-words mt-2">
+                  <p className="text-sm text-text leading-relaxed break-words mt-2">
                     {c.content}
                   </p>
 
@@ -323,7 +323,7 @@ export default function CommentSection({
                         setReplyingTo(replyingTo === c.id ? null : c.id);
                         setReplyContent("");
                       }}
-                      className="text-xs border border-gray-200 text-gray-400 hover:border-accent hover:text-accent transition-colors rounded-full px-3 py-1"
+                      className="text-xs border border-white/10 text-muted hover:border-accent hover:text-accent transition-colors rounded-full px-3 py-1"
                     >
                       ตอบกลับ
                     </button>
@@ -333,7 +333,7 @@ export default function CommentSection({
 
               {/* Replies */}
               {c.replies.length > 0 && (
-                <div className="ml-11 mt-3 space-y-3 border-l-2 border-gray-100 pl-4">
+                <div className="ml-11 mt-3 space-y-3 border-l-2 border-white/10 pl-4">
                   {c.replies.map((r) => (
                     <div key={r.id} className="flex gap-2">
                       <Avatar comment={r} size={6} />
@@ -341,10 +341,10 @@ export default function CommentSection({
                       <div className="flex-1 min-w-0">
                         <div className="flex items-start justify-between gap-2">
                           <div>
-                            <span className="text-xs font-semibold text-gray-800">
+                            <span className="text-xs font-semibold text-text">
                               {getDisplayName(r)}
                             </span>
-                            <p className="text-xs text-gray-400 mt-0.5">
+                            <p className="text-xs text-muted mt-0.5">
                               {formatThaiDate(r.createdAt)}
                             </p>
                           </div>
@@ -352,7 +352,7 @@ export default function CommentSection({
                           {canDelete(r) && (
                             <button
                               onClick={() => handleDelete(r.id, c.id)}
-                              className="text-gray-300 hover:text-red-400 transition-colors flex-shrink-0 mt-1"
+                              className="text-muted hover:text-red-400 transition-colors flex-shrink-0 mt-1"
                               aria-label="ลบความคิดเห็น"
                             >
                               <svg width="11" height="11" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
@@ -361,7 +361,7 @@ export default function CommentSection({
                             </button>
                           )}
                         </div>
-                        <p className="text-xs text-gray-700 leading-relaxed break-words mt-1.5">
+                        <p className="text-xs text-text leading-relaxed break-words mt-1.5">
                           {r.content}
                         </p>
                       </div>
@@ -372,8 +372,8 @@ export default function CommentSection({
 
               {/* Inline reply form */}
               {replyingTo === c.id && (
-                <div className="ml-10 mt-3 border-l-2 border-accent/30 pl-3">
-                  <div className="bg-gray-50 border border-gray-200 rounded-xl p-3 space-y-2">
+                <div className="ml-10 mt-3 border-l-2 border-accent/40 pl-3">
+                  <div className="bg-bg border border-white/10 rounded-lg p-3 space-y-2">
                     {!isLoggedIn && (
                       <div className="flex items-center gap-2">
                         <input
@@ -385,7 +385,7 @@ export default function CommentSection({
                           }}
                           maxLength={50}
                           placeholder="ชื่อของคุณ"
-                          className="flex-1 bg-white border border-gray-200 rounded-lg px-2 py-1 text-xs text-gray-800 outline-none focus:ring-2 focus:ring-accent focus:border-transparent"
+                          className="flex-1 bg-surface border border-white/10 rounded-md px-2 py-1 text-xs text-text outline-none focus:ring-2 focus:ring-inset focus:ring-accent focus:border-transparent"
                         />
                       </div>
                     )}
@@ -396,14 +396,14 @@ export default function CommentSection({
                         placeholder={`ตอบกลับ ${getDisplayName(c)}...`}
                         rows={2}
                         maxLength={1000}
-                        className="flex-1 bg-white border border-gray-200 rounded-lg px-3 py-2 text-xs text-gray-800 placeholder:text-gray-400 outline-none focus:ring-2 focus:ring-accent focus:border-transparent resize-none"
+                        className="flex-1 bg-surface border border-white/10 rounded-md px-2 py-1.5 text-xs text-text placeholder:text-muted outline-none focus:ring-2 focus:ring-inset focus:ring-accent focus:border-transparent resize-none"
                         autoFocus
                       />
                       <div className="flex flex-col gap-1 self-end">
                         <button
                           onClick={() => handleReplySubmit(c.id)}
                           disabled={replySubmitting || !replyContent.trim()}
-                          className="bg-accent text-white text-xs font-semibold px-3 py-1.5 rounded-lg hover:bg-accent-hover transition-colors disabled:opacity-50"
+                          className="bg-accent text-white text-xs font-semibold px-3 py-1.5 rounded-md hover:bg-accent-hover transition-colors disabled:opacity-50"
                         >
                           {replySubmitting ? "..." : "ส่ง"}
                         </button>
@@ -412,7 +412,7 @@ export default function CommentSection({
                             setReplyingTo(null);
                             setReplyContent("");
                           }}
-                          className="text-xs text-gray-400 hover:text-gray-600 transition-colors px-3 py-1.5"
+                          className="text-xs text-muted hover:text-text transition-colors px-3 py-1.5"
                         >
                           ยกเลิก
                         </button>
@@ -427,8 +427,8 @@ export default function CommentSection({
       )}
 
       {comments.length === 0 && (
-        <div className="bg-white border border-gray-200 rounded-2xl shadow-sm px-5 py-10 text-center">
-          <p className="text-sm text-gray-400">
+        <div className="bg-surface border border-white/10 rounded-xl px-5 py-10 text-center">
+          <p className="text-sm text-muted">
             ยังไม่มีความคิดเห็น เป็นคนแรกที่แสดงความคิดเห็น!
           </p>
         </div>
